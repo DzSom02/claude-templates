@@ -127,9 +127,9 @@ When all tasks are checked, output `<promise>DONE</promise>`.
 
 - **Phases must complete in order** — do not start a phase until all tasks in the previous phase are checked.
 - **Within a phase, respect dependencies** — work top-to-bottom by default. Tasks marked `(independent)` can be done in any order. Tasks marked `(requires Task N)` must wait for that task.
+- **Commit at the end of each phase** — the last task in every phase runs `make test` and commits. Only commit if tests pass.
 - After completing a task, mark it `[x]` in this file and stop.
 - If a task fails, add a comment line below it describing the error, fix the blocker, then complete it before moving on.
-- Run `make test` after the final task. Only emit the promise if tests pass.
 
 ---
 
@@ -141,33 +141,39 @@ When all tasks are checked, output `<promise>DONE</promise>`.
 - [ ] **Task 02** — [Next task].
   Verify: [Verification step].
 
+- [ ] **Task 03** — Run `make test`. If tests pass, commit: `git add -A && git commit -m "Phase 1: [setup description]"`.
+
 ---
 
 ### Phase 2 — [Core Logic / Backend]
 
-- [ ] **Task 03** — [Description].
+- [ ] **Task 04** — [Description].
   Verify: [Verification].
 
-- [ ] **Task 04** *(independent)* — [Description with no dependency on Task 03].
+- [ ] **Task 05** *(independent)* — [Description with no dependency on Task 04].
   Verify: [Verification].
 
-- [ ] **Task 05** *(requires Task 03)* — [Description that builds on Task 03].
+- [ ] **Task 06** *(requires Task 04)* — [Description that builds on Task 04].
   Verify: [Verification].
+
+- [ ] **Task 07** — Run `make test`. If tests pass, commit: `git add -A && git commit -m "Phase 2: [description]"`.
 
 ---
 
 ### Phase 3 — [Frontend / Integration]
 
-- [ ] **Task 06** — [Description].
+- [ ] **Task 08** — [Description].
   Verify: [Verification].
+
+- [ ] **Task 09** — Run `make test`. If tests pass, commit: `git add -A && git commit -m "Phase 3: [description]"`.
 
 ---
 
 ### Phase 4 — Tests, Tooling, Final Check
 
-- [ ] **Task 05** — Run `make test`. Confirm coverage ≥ 80% and zero lint errors.
+- [ ] **Task 10** — Run `pre-commit run --all-files`. Fix any remaining issues.
 
-- [ ] **Task 06** — Run `pre-commit run --all-files`. Fix any remaining issues.
+- [ ] **Task 11** — Run `make test`. Confirm coverage ≥ 80% and zero lint errors. Commit: `git add -A && git commit -m "Phase 4: tests, tooling"`.
 
 ---
 

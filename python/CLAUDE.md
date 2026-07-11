@@ -48,6 +48,7 @@ Resolve all open questions before moving to the tasks.
 Tasks reference the design sections above directly — no separate prompt file needed.
 - **Phases complete in order** — phase 2 can't start until phase 1 is fully checked.
 - **Within a phase, respect dependencies** — default top-to-bottom; mark tasks `(independent)` or `(requires Task N)` when relevant.
+- **Commit at the end of each phase** — last task in every phase runs `make test` and commits if green.
 
 ### 2. Run the ralph-loop
 

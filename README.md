@@ -50,10 +50,10 @@ Fill in `TRD.md` before writing any code. The document has two parts:
 Tasks reference the design sections above directly. Key rules baked in:
 - **Phases complete in order** — phase 2 can't start until phase 1 is fully checked.
 - **Within a phase, respect dependencies** — default top-to-bottom; tasks marked `(independent)` can run in any order; tasks marked `(requires Task N)` wait for that task.
+- **Commit at the end of each phase** — last task in every phase runs `make test` and commits if green. One commit per phase = readable history + recovery points.
 - After each task, Claude marks `[x]` in the file and stops the iteration.
 - Each task has a **Verify** step.
 - A task failure is noted as a comment in-place, then fixed before moving on.
-- Final task runs `make test` and `pre-commit run --all-files`.
 - Last line: `When every task is checked, output: <promise>DONE</promise>`
 
 Revisions go in new files: `TRD_v2.md`, `TRD_v3.md`. Never overwrite history.
