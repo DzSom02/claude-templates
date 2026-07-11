@@ -1,5 +1,4 @@
-# Technical Requirements Document
-## [Project Name]
+# TRD: [Project Name]
 
 **Date:** YYYY-MM-DD
 **Revision:** 1
@@ -17,7 +16,7 @@
 
 **v1 scope:** <!-- One sentence on what v1 includes and what is deferred. -->
 
-### Modes / Features
+### Features
 
 | Feature | Status | Purpose |
 |---------|--------|---------|
@@ -29,7 +28,7 @@
 ## 2. Architecture
 
 <!-- High-level diagram or prose description.
-     Include the key constraint that drove this choice (e.g. "local files → can't use cloud storage").
+     Include the key constraint that drove this choice.
      Name what is explicitly NOT used and why. -->
 
 ```
@@ -42,17 +41,15 @@ Layer B
 
 ### Key design decisions
 
-<!-- One paragraph per non-obvious decision. Format:
-     Decision: what was chosen.
-     Why: the constraint or tradeoff that made this the right call.
-     Not: what was rejected and why. -->
+<!-- One paragraph per non-obvious decision.
+     Decision / Why / What was rejected and why. -->
 
 ---
 
 ## 3. Data Model
 
 <!-- Full schema. Every table, every column, types, constraints, foreign keys.
-     This is the contract — the API and pipeline are derived from it. -->
+     This is the contract — the tasks below are derived from it. -->
 
 ```sql
 table_name (
@@ -66,9 +63,8 @@ table_name (
 
 ## 4. API Endpoints
 
-<!-- Skip this section for CLI tools or libraries — only needed for webapps/services.
-     For each endpoint: method, path, request body (if any), response shape.
-     Keep it concise — implementation details go in PROMPT.md. -->
+<!-- Skip for CLI/library projects.
+     Method, path, request body, response shape. -->
 
 ```
 GET  /api/resource            → list
@@ -80,9 +76,8 @@ POST /api/resource/:id/action → {field: value}
 
 ## 5. UX / User Flows
 
-<!-- Skip this section for CLI tools or libraries — only needed for webapps.
-     Key screens and the state transitions between them.
-     ASCII wireframes are fine. Describe what the user sees and does, not how it's implemented. -->
+<!-- Skip for CLI/library projects.
+     Key screens and state transitions. ASCII wireframes are fine. -->
 
 ---
 
@@ -108,8 +103,7 @@ project/
 
 ## 8. Open Questions
 
-<!-- Unresolved decisions. Resolve all of these before writing PROMPT.md.
-     Format: Question → Decision (or "TBD") -->
+<!-- Resolve ALL of these before writing the tasks below. -->
 
 | # | Question | Decision |
 |---|----------|----------|
@@ -119,7 +113,55 @@ project/
 
 ## 9. Out of Scope (v1)
 
-<!-- Explicit list of things NOT being built. Prevents scope creep during ralph-loop. -->
+- …
 
-- …
-- …
+---
+
+## Implementation Tasks
+
+Read the sections above before starting. Complete every task in order.
+After completing a task, edit this file to replace `- [ ]` with `- [x]`, then stop for the iteration.
+When all tasks are checked, output `<promise>DONE</promise>`.
+
+### Rules
+
+- Work top-to-bottom. Do not skip or reorder — dependencies are sequential.
+- After completing a task, mark it `[x]` in this file and stop.
+- If a task fails, add a comment line below it describing the error, fix the blocker, then complete it before moving on.
+- Run `make test` after the final task. Only emit the promise if tests pass.
+
+---
+
+### Phase 1 — [Setup / Scaffolding]
+
+- [ ] **Task 01** — [What to build or configure].
+  Verify: [Command output, file exists, test passes].
+
+- [ ] **Task 02** — [Next task].
+  Verify: [Verification step].
+
+---
+
+### Phase 2 — [Core Logic / Backend]
+
+- [ ] **Task 03** — [Description].
+  Verify: [Verification].
+
+---
+
+### Phase 3 — [Frontend / Integration]
+
+- [ ] **Task 04** — [Description].
+  Verify: [Verification].
+
+---
+
+### Phase 4 — Tests, Tooling, Final Check
+
+- [ ] **Task 05** — Run `make test`. Confirm coverage ≥ 80% and zero lint errors.
+
+- [ ] **Task 06** — Run `pre-commit run --all-files`. Fix any remaining issues.
+
+---
+
+When every task above is checked, output: `<promise>DONE</promise>`

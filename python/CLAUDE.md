@@ -37,37 +37,29 @@ pre-commit install
 
 ## Working Methodology
 
-### 1. TRD first — no code before the design is agreed
+### 1. Write the TRD — no code before the design is agreed
 
-Before writing any code, write `TRD.md` (use the template). Cover:
-product overview, architecture, data model, API, UX flows, tech stack, open questions, out of scope.
+Fill in `TRD.md` (use the template). The document has two parts:
 
-Resolve all open questions before moving on. The TRD is the contract — the PROMPT.md is derived from it.
+**Design sections (top):** product overview, architecture, data model, API, UX flows, tech stack.
+Resolve all open questions before moving to the tasks.
 
-### 2. PROMPT.md — the ralph-loop task list
+**Implementation tasks (bottom):** an ordered checklist of concrete, verifiable tasks grouped into phases.
+Tasks reference the design sections above directly — no separate prompt file needed.
 
-Once TRD is agreed, translate it into `PROMPT.md`: an ordered checklist of concrete, verifiable tasks
-grouped into phases. Rules embedded in the prompt:
-- Tasks run top-to-bottom (dependencies flow sequentially).
-- Each task is checked off (`[x]`) before the next begins.
-- Each task has a **Verify** step (command output, file existence, test pass).
-- Final task always runs `make test` and `pre-commit run --all-files`.
-- Prompt ends with: `When every task is checked, output: <promise>DONE</promise>`
-
-### 3. Run the ralph-loop
+### 2. Run the ralph-loop
 
 ```
-/ralph-loop:ralph-loop "Read PROMPT.md and follow all tasks in order" --completion-promise "DONE"
+/ralph-loop:ralph-loop "Read TRD.md and follow all tasks in the Implementation Tasks section" --completion-promise "DONE"
 ```
 
-Claude reads PROMPT.md, works on the next unchecked task, checks it off (`[x]`) in the file, then stops.
-The next iteration sees the updated file and picks up from where it left off.
-Continues until `<promise>DONE</promise>` is emitted.
+Claude reads the full TRD for context, works on the next unchecked task, marks it `[x]` in the file,
+then stops. The next iteration sees the updated file and continues until `<promise>DONE</promise>`.
 
-### 4. Subsequent sprints
+### 3. Subsequent sprints
 
-Never overwrite PROMPT.md. Create `PROMPT_v2.md`, `PROMPT_v3.md`, etc. for new sprints.
-Each sprint gets its own TRD revision if the architecture changes (TRD_v2.md, etc.).
+Never overwrite `TRD.md`. Create `TRD_v2.md`, `TRD_v3.md`, etc. for new sprints — each with its own
+updated design sections and a fresh task list at the bottom.
 This preserves the full decision history alongside the code.
 
 ---

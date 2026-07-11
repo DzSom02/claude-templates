@@ -34,41 +34,37 @@ git commit -m "chore: scaffold from claude-templates/python"
 
 ### 3. Write the TRD
 
-Fill in `TRD.md` before writing any code. The TRD is the contract — cover:
+Fill in `TRD.md` before writing any code. The document has two parts:
 
+**Design sections (top):**
 - Product overview and v1 scope
 - Architecture and key design decisions (with rationale)
 - Data model / schema
 - API endpoints *(skip for CLI/library projects)*
 - UX flows *(skip for CLI/library projects)*
 - Tech stack with rationale
-- Open questions — **resolve all before moving on**
+- Open questions — **resolve all before writing any tasks**
 - Out of scope for v1
+
+**Implementation tasks (bottom):** an ordered checklist of concrete, verifiable tasks grouped into phases.
+Tasks reference the design sections above directly. Key rules baked in:
+- Top-to-bottom, no skipping — dependencies are sequential.
+- After each task, Claude marks `[x]` in the file and stops the iteration.
+- Each task has a **Verify** step.
+- A task failure is noted as a comment in-place, then fixed before moving on.
+- Final task runs `make test` and `pre-commit run --all-files`.
+- Last line: `When every task is checked, output: <promise>DONE</promise>`
 
 Revisions go in new files: `TRD_v2.md`, `TRD_v3.md`. Never overwrite history.
 
-### 4. Write PROMPT.md
-
-Translate the agreed TRD into `PROMPT.md`: an ordered checklist of concrete, verifiable tasks
-grouped into phases. Key rules baked into every prompt:
-
-- Tasks run top-to-bottom (dependencies are sequential).
-- After each task, Claude edits the file to mark `[x]` and stops the iteration.
-- Each task has a **Verify** step.
-- A task failure is noted as a comment in-place, then fixed before moving on.
-- Final task always runs `make test` and `pre-commit run --all-files`.
-- Last line: `When every task is checked, output: <promise>DONE</promise>`
-
-Subsequent sprints go in `PROMPT_v2.md`, `PROMPT_v3.md`, etc.
-
-### 5. Run the Ralph Loop
+### 4. Run the Ralph Loop
 
 ```
-/ralph-loop:ralph-loop "Read PROMPT.md and follow all tasks in order" --completion-promise "DONE"
+/ralph-loop:ralph-loop "Read TRD.md and follow all tasks in the Implementation Tasks section" --completion-promise "DONE"
 ```
 
-Claude reads `PROMPT.md`, works on the next unchecked task, marks it `[x]`, then stops.
-The next iteration sees the updated file and continues. Runs until the completion promise is emitted.
+Claude reads the full TRD for context, works on the next unchecked task, marks it `[x]`, then stops.
+The next iteration continues until the completion promise is emitted.
 
 ---
 
@@ -77,8 +73,7 @@ The next iteration sees the updated file and continues. Runs until the completio
 ```
 python/
 ├── CLAUDE.md                  # Commands, architecture placeholder, methodology, programming guidelines
-├── TRD.md                     # Technical Requirements Document template
-├── PROMPT.md                  # Ralph Loop task list template
+├── TRD.md                     # Design + implementation task list (single source of truth)
 ├── Makefile                   # dev, test, lint, build, migrate
 ├── pyproject.toml             # ruff + mypy config
 ├── .pre-commit-config.yaml    # ruff, mypy, pytest hooks
