@@ -99,10 +99,22 @@ This preserves the full decision history alongside the code.
 - Test names follow `test_<action>_<expected_outcome>`: `test_player_attack_deals_damage`.
 - Use `conftest.py` for shared fixtures. Never repeat construction in individual tests.
 - Test **behaviour**, not implementation. Don't assert on private state or internal method calls.
-- Unit tests for logic; integration tests for boundaries (API endpoints, DB, file I/O).
 - Do not mock the database or filesystem — use real fixtures and a test DB.
-- E2E tests go in `tests/test_e2e.py`. Run them after every code change before marking work done.
 - Coverage threshold: 80%, enforced by `make test`.
+
+#### Unit vs integration vs E2E
+
+- **Unit tests** (`tests/test_*.py`): pure logic, no I/O, no framework.
+- **Integration tests** (`tests/test_*.py`): boundaries — API endpoints via `TestClient`, DB queries with a real in-memory DB. For webapps these are the de-facto E2E.
+- **E2E tests** (`tests/test_e2e.py`): full user journeys through the real app with real data. For apps with UI or complex flows only. May need special environment (e.g. `QT_QPA_PLATFORM=offscreen`); if so, document the command in the Commands section above.
+
+#### E2E rules
+
+- Write E2E tests at the end of each feature phase, before the phase commit — not as a final afterthought.
+- Cover: the golden path + the key failure/edge cases for that phase's features. Nothing more.
+- Group tests by feature flow using classes: `class TestStartup:`, `class TestStudySession:`.
+- Place fixture data (JSON scenarios, seed DBs, etc.) in `tests/fixtures/`.
+- The phase commit task must run E2E explicitly if they are not included in `make test`.
 
 ### Comments
 
