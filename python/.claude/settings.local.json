@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m pytest *)",
+      "Bash(python3 -m ruff *)",
+      "Bash(python3 -m mypy *)",
+      "Bash(python3 -m uvicorn *)",
+      "Bash(pre-commit run *)",
+      "Bash(pre-commit install)",
+      "Bash(pip3 install *)",
+      "Bash(pip install *)",
+      "Bash(make *)",
+      "Bash(git status)",
+      "Bash(git log *)",
+      "Bash(git diff *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(npx *)"
+    ]
+  }
+}

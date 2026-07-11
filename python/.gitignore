@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+
+# Data / database (project-specific — adjust as needed)
+data/*.db
+data/*.sqlite
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Tooling
+.mypy_cache/
+.ruff_cache/
+
+# Frontend (if applicable)
+frontend/node_modules/
+frontend/dist/
+
+# OS
+.DS_Store
