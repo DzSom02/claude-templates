@@ -125,7 +125,8 @@ When all tasks are checked, output `<promise>DONE</promise>`.
 
 ### Rules
 
-- Work top-to-bottom. Do not skip or reorder — dependencies are sequential.
+- **Phases must complete in order** — do not start a phase until all tasks in the previous phase are checked.
+- **Within a phase, respect dependencies** — work top-to-bottom by default. Tasks marked `(independent)` can be done in any order. Tasks marked `(requires Task N)` must wait for that task.
 - After completing a task, mark it `[x]` in this file and stop.
 - If a task fails, add a comment line below it describing the error, fix the blocker, then complete it before moving on.
 - Run `make test` after the final task. Only emit the promise if tests pass.
@@ -147,11 +148,17 @@ When all tasks are checked, output `<promise>DONE</promise>`.
 - [ ] **Task 03** — [Description].
   Verify: [Verification].
 
+- [ ] **Task 04** *(independent)* — [Description with no dependency on Task 03].
+  Verify: [Verification].
+
+- [ ] **Task 05** *(requires Task 03)* — [Description that builds on Task 03].
+  Verify: [Verification].
+
 ---
 
 ### Phase 3 — [Frontend / Integration]
 
-- [ ] **Task 04** — [Description].
+- [ ] **Task 06** — [Description].
   Verify: [Verification].
 
 ---

@@ -46,6 +46,8 @@ Resolve all open questions before moving to the tasks.
 
 **Implementation tasks (bottom):** an ordered checklist of concrete, verifiable tasks grouped into phases.
 Tasks reference the design sections above directly — no separate prompt file needed.
+- **Phases complete in order** — phase 2 can't start until phase 1 is fully checked.
+- **Within a phase, respect dependencies** — default top-to-bottom; mark tasks `(independent)` or `(requires Task N)` when relevant.
 
 ### 2. Run the ralph-loop
 
