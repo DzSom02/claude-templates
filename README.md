@@ -64,7 +64,7 @@ Subsequent sprints go in `PROMPT_v2.md`, `PROMPT_v3.md`, etc.
 ### 5. Run the Ralph Loop
 
 ```
-/ralph-loop "Read PROMPT.md and follow all tasks in order" --completion-promise "DONE"
+/ralph-loop:ralph-loop "Read PROMPT.md and follow all tasks in order" --completion-promise "DONE"
 ```
 
 Claude reads `PROMPT.md`, works on the next unchecked task, marks it `[x]`, then stops.

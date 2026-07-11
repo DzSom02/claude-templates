@@ -57,7 +57,7 @@ grouped into phases. Rules embedded in the prompt:
 ### 3. Run the ralph-loop
 
 ```
-/ralph-loop "Read PROMPT.md and follow all tasks in order" --completion-promise "DONE"
+/ralph-loop:ralph-loop "Read PROMPT.md and follow all tasks in order" --completion-promise "DONE"
 ```
 
 Claude reads PROMPT.md, works on the next unchecked task, checks it off (`[x]`) in the file, then stops.
