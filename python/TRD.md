@@ -141,7 +141,9 @@ When all tasks are checked, output `<promise>DONE</promise>`.
 - [ ] **Task 02** — [Next task].
   Verify: [Verification step].
 
-- [ ] **Task 03** — Run `make test` (and E2E suite if separate). If all pass, commit: `git add -A && git commit -m "Phase 1: [setup description]"`.
+- [ ] **Task 03** — Run `/code-review` on this phase's new code. Focus: class ownership, layer separation, method size. Address any high-confidence architectural findings before moving on.
+
+- [ ] **Task 04** — Run `make test` (and E2E suite if separate). If all pass, commit: `git add -A && git commit -m "Phase 1: [setup description]"`.
 
 ---
 
@@ -156,7 +158,9 @@ When all tasks are checked, output `<promise>DONE</promise>`.
 - [ ] **Task 06** *(requires Task 04)* — [Description that builds on Task 04].
   Verify: [Verification].
 
-- [ ] **Task 07** — Write E2E tests for this phase's features in `tests/test_e2e.py` (golden path + key failure cases, grouped by `class TestFeatureName:`). Run `make test` (and E2E suite if separate). If all pass, commit: `git add -A && git commit -m "Phase 2: [description]"`.
+- [ ] **Task 07** — Run `/code-review` on this phase's new code. Focus: class ownership, layer separation, method size, coupling between modules. Address architectural findings before committing.
+
+- [ ] **Task 08** — Write E2E tests for this phase's features in `tests/test_e2e.py` (golden path + key failure cases, grouped by `class TestFeatureName:`). Run `make test` (and E2E suite if separate). If all pass, commit: `git add -A && git commit -m "Phase 2: [description]"`.
 
 ---
 
@@ -165,7 +169,9 @@ When all tasks are checked, output `<promise>DONE</promise>`.
 - [ ] **Task 08** — [Description].
   Verify: [Verification].
 
-- [ ] **Task 09** — Write E2E tests for this phase's features in `tests/test_e2e.py`. Run `make test` (and E2E suite if separate). If all pass, commit: `git add -A && git commit -m "Phase 3: [description]"`.
+- [ ] **Task 09** — Run `/code-review` on this phase's new code. Address architectural findings.
+
+- [ ] **Task 10** — Write E2E tests for this phase's features in `tests/test_e2e.py`. Run `make test` (and E2E suite if separate). If all pass, commit: `git add -A && git commit -m "Phase 3: [description]"`.
 
 ---
 
