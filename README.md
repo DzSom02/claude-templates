@@ -50,7 +50,7 @@ Fill in `TRD.md` before writing any code. The document has two parts:
 Tasks reference the design sections above directly. Key rules baked in:
 - **Phases complete in order** — phase 2 can't start until phase 1 is fully checked.
 - **Within a phase, respect dependencies** — default top-to-bottom; tasks marked `(independent)` can run in any order; tasks marked `(requires Task N)` wait for that task.
-- **Review before committing** — second-to-last task in every phase runs `/code-review` focused on architecture (class ownership, layer separation, method size). Fix findings before the commit — architectural drift caught here is cheap; caught after the next phase, it's a new sprint.
+- **Review before committing** — second-to-last task in every phase invokes the `code-review` skill (via the Skill tool, not bash) focused on architecture: class ownership, layer separation, method size. Apply high-confidence fixes before the commit — architectural drift caught here is cheap; caught after the next phase, it's a new sprint.
 - **Commit at the end of each phase** — last task in every phase runs `make test` and commits if green. One commit per phase = readable history + recovery points.
 - After each task, Claude marks `[x]` in the file and stops the iteration.
 - Each task has a **Verify** step.
